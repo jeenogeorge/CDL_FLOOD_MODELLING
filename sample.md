@@ -13,9 +13,6 @@ We are going to use the following libraries:
 packages <- c("terra", "raster", "sp", "sf", "tidyr", "rgdal", "dplyr", "tidyverse")
 ```
 
-    ##     terra    raster        sp        sf     tidyr     rgdal     dplyr tidyverse 
-    ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE
-
 and load the data we have already prepared.
 
 ``` r
@@ -33,7 +30,18 @@ R_21 <- rast('rainfall_2021.tif')
 ``` r
 rainfall <- c(R_15, R_16, R_17, R_18, R_19, R_20, R_21)
 R_mean <- mean(R_15, R_16, R_17, R_18, R_19, R_20, R_21)
+R_mean
 ```
 
+    ## class       : SpatRaster 
+    ## dimensions  : 129, 135, 1  (nrow, ncol, nlyr)
+    ## resolution  : 0.25, 0.25  (x, y)
+    ## extent      : 66.375, 100.125, 6.375, 38.625  (xmin, xmax, ymin, ymax)
+    ## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+    ## source      : memory 
+    ## name        :      sum 
+    ## min value   : 88.25242 
+    ## max value   : 10288.39
+
 ##plotting the mean annual rainfall
-![](sample_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](sample_files/figure-gfm/plotting%20the%20mean%20annual%20rainfall-1.png)<!-- -->
