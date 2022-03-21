@@ -3,14 +3,20 @@ title: "Sample"
 author: "CDL - Jeeno"
 date: "March 21, 2022"
 output: html_document
+keep_md: true
+
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Introduction
 
-```{r packages,include=FALSE}
+This is an AHP for mapping the flood prone areas in Assam.
+
+We are going to use the following libraries:
+```{r loading libraries, message=FALSE, warning=FALSE, echo=FALSE}
 # Install and load the necessary packages 
 ipak <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
@@ -18,26 +24,34 @@ ipak <- function(pkg){
     install.packages(new.pkg, dependencies = TRUE, repos = "http://cran.us.r-project.org")
   sapply(pkg, require, character.only = TRUE)
 }
+```
+```{r, echo=TRUE}
 packages <- c("terra", "raster", "sp", "sf", "tidyr", "rgdal", "dplyr", "tidyverse")
+```
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
 ipak(packages)
 ```
 
-## R Markdown
+and load the data we have already prepared.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r}
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+R_15 <- rast('rainfall_2015.tif')
+R_16 <- rast('rainfall_2016.tif')
+R_17 <- rast('rainfall_2017.tif')
+R_18 <- rast('rainfall_2018.tif')
+R_19 <- rast('rainfall_2019.tif')
+R_20 <- rast('rainfall_2020.tif')
+R_21 <- rast('rainfall_2021.tif')
+```
+## Calculating and plotting mean annual rainfall
+```{r, echo=T}
+rainfall <- c(R_15, R_16, R_17, R_18, R_19, R_20, R_21)
+R_mean <- mean(R_15, R_16, R_17, R_18, R_19, R_20, R_21)
+```
+##plotting the mean annual rainfall
+```{r, echo=FALSE}
+plot(R_mean, main = "MeanAnnualRainfall")
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
